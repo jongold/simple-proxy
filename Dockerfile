@@ -2,8 +2,8 @@ FROM node
 
 ADD . /src
 WORKDIR src
-RUN npm install
+RUN npm install -g forever
 
 EXPOSE 6060
 
-CMD ["node", "index.js"]
+CMD forever index.js

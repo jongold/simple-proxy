@@ -29,7 +29,11 @@ var proxy = httpProxy.createProxyServer({
 
 app.use(function(req, res) {
   console.log('-> '.green + req.path);
-  proxy.web(req, res);
+  proxy.web(req, res, function(err) {
+    console.log(err);
+    res.writeHead(502);
+    res.end("There was an error proxying your response :(");
+  });
 });
 
 app.listen(PORT);
